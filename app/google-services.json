@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "130252528400",
+    "firebase_url": "https://finalexam-6b838-default-rtdb.firebaseio.com",
+    "project_id": "finalexam-6b838",
+    "storage_bucket": "finalexam-6b838.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130252528400:android:71bcbe71fcbb86737ee395",
+        "android_client_info": {
+          "package_name": "com.example.chitchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130252528400-go2gukln0ebsdhgt6iq8n0o6farlfqkj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA23JzFkrdKmYMKXPRNCexmIj_wSQPD4Jw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130252528400-go2gukln0ebsdhgt6iq8n0o6farlfqkj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
