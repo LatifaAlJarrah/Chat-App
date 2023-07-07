@@ -8,20 +8,20 @@
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/userimg"
+        android:id="@+id/userImg"
         android:layout_width="60dp"
         android:layout_height="60dp"
 
         android:layout_marginEnd="10dp"
         android:src="@drawable/logo"
-        app:layout_constraintEnd_toStartOf="@id/callName"
+        app:layout_constraintEnd_toStartOf="@id/userName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
         />
 
     <TextView
-        android:id="@+id/callName"
+        android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -29,8 +29,8 @@
         android:text="Name"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/userimg"
-        app:layout_constraintStart_toEndOf="@id/userimg"
+        app:layout_constraintBottom_toBottomOf="@id/userImg"
+        app:layout_constraintStart_toEndOf="@id/userImg"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -40,9 +40,9 @@
         android:padding="4dp"
         android:src="@drawable/ic_call"
         android:tint="@color/blue"
-        app:layout_constraintBottom_toBottomOf="@+id/callName"
+        app:layout_constraintBottom_toBottomOf="@+id/userName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.929"
-        app:layout_constraintStart_toEndOf="@+id/callName" />
+        app:layout_constraintStart_toEndOf="@+id/userName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

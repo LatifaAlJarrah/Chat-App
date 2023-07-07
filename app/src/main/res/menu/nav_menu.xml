@@ -5,16 +5,19 @@
     <item android:id="@+id/home"
         android:title=""
         android:icon="@drawable/baseline_home_2"
+        android:iconTint="@color/icon_color"
         />
 
     <item android:id="@+id/power"
         android:title=""
         android:icon="@drawable/baseline_power_settings_new_24"
+        android:iconTint="@color/icon_color"
         />
 
     <item android:id="@+id/profile"
         android:title=""
         android:icon="@drawable/baseline_profile_24"
+        android:iconTint="@color/icon_color"
         />
 
 </menu>

@@ -33,7 +33,6 @@ public class Home extends AppCompatActivity {
     private ActivityHomeBinding binding;
     private PreferenceManager preferenceManager;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +80,16 @@ public class Home extends AppCompatActivity {
     }
     private void setListener() {
         binding.bottomNavigationView.findViewById(R.id.power).setOnClickListener(view -> signOut());
+        binding.bottomNavigationView.findViewById(R.id.profile).setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), Profile.class));
+        });
+        binding.button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Friends.class);
+                startActivity(intent);
+            }
+        });
     }
     private void loadingUserDetails() {
         byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);

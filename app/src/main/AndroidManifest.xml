@@ -15,6 +15,12 @@
         android:theme="@style/Theme.ChitChat"
         tools:targetApi="31">
         <activity
+            android:name=".activities.Profile"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Friends"
+            android:exported="false" />
+        <activity
             android:name=".activities.Call"
             android:exported="false" />
         <activity

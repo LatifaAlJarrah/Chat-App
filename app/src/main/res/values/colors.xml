@@ -7,6 +7,7 @@
     <color name="colorPrimary">#FF9800</color>
     <color name="chat">#F5F5F5</color>
     <color name="chat222">#A6A3A3</color>
-    <color name="background_nav">#BCBCBC</color>
+    <color name="background_nav">#F5F4F5</color>
     <color name="silver">#E6E4E3</color>
+    <color name="icon_color">#A6A3A3</color>
 </resources>
