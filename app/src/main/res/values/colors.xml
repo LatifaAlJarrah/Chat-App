@@ -6,8 +6,10 @@
     <color name="gray">#A6A3A3</color>
     <color name="colorPrimary">#FF9800</color>
     <color name="chat">#F5F5F5</color>
-    <color name="chat222">#A6A3A3</color>
+    <color name="chat222">#EDEDED</color>
     <color name="background_nav">#F5F4F5</color>
     <color name="silver">#E6E4E3</color>
     <color name="icon_color">#A6A3A3</color>
+    <color name="red">#AF0000</color>
+    <color name="green">#50C878</color>
 </resources>

@@ -30,7 +30,7 @@
         />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imagecall"
+        android:id="@+id/imageCall"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="16dp"
@@ -55,9 +55,19 @@
         android:fontFamily="@font/open_sans_bold"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/imageBack"
-        app:layout_constraintEnd_toStartOf="@id/imagecall"
+        app:layout_constraintEnd_toStartOf="@id/imageCall"
         app:layout_constraintStart_toEndOf="@id/imageBack"
         app:layout_constraintTop_toTopOf="@id/imageBack"
+        />
+
+
+    <View
+        android:id="@+id/viewSupporter"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="@dimen/_12sdp"
+        app:layout_constraintTop_toBottomOf="@+id/imageBack"
+
         />
 
 
@@ -70,9 +80,10 @@
         android:overScrollMode="never"
         android:padding="20dp"
         android:visibility="gone"
+        app:stackFromEnd="true"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="@id/viewBackground"
-        app:layout_constraintTop_toBottomOf="@id/imageBack" />
+        app:layout_constraintTop_toBottomOf="@id/viewSupporter" />
 
 
     <ProgressBar
@@ -130,4 +141,16 @@
         app:layout_constraintEnd_toStartOf="@id/layoutsend"
         app:layout_constraintStart_toStartOf="parent"
         />
+    <TextView
+        android:id="@+id/textAvailability"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:gravity="center"
+        android:padding="2.00dp"
+        android:text="online"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/viewSupporter" />
 </androidx.constraintlayout.widget.ConstraintLayout>

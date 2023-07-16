@@ -23,11 +23,11 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profileImage"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="40dp"
         android:padding="5dp"
-        android:src="@drawable/img"
+        android:src="@drawable/download"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -75,7 +75,7 @@
     <EditText
         android:id="@+id/usernameEditText"
         android:layout_width="379dp"
-        android:layout_height="48dp"
+        android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/edittext"
@@ -107,7 +107,7 @@
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="379dp"
-        android:layout_height="48dp"
+        android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/edittext"
@@ -139,7 +139,7 @@
     <EditText
         android:id="@+id/editTextPhone"
         android:layout_width="379dp"
-        android:layout_height="48dp"
+        android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/edittext"
@@ -171,7 +171,7 @@
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="379dp"
-        android:layout_height="48dp"
+        android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/edittext"

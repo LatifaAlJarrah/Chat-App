@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements AppCompatCallback
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            Intent intent = new Intent(MainActivity.this, login.class);
+            Intent intent = new Intent(MainActivity.this, OnBording1.class);
             startActivity(intent);
             MainActivity.this.finish();
         }

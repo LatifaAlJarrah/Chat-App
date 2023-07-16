@@ -11,12 +11,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.widget.Toast;
 
+import com.example.chitchat.R;
 import com.example.chitchat.databinding.ActivityProfileBinding;
 import com.example.chitchat.models.User;
 import com.example.chitchat.utilities.Constants;
 import com.example.chitchat.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -84,6 +88,11 @@ public class Profile extends AppCompatActivity {
             updatePhoto();
             startActivity(new Intent(getApplicationContext(), Profile.class));
         });
+        binding.bottomNavigationView.findViewById(R.id.home).setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), Home.class));
+        });
+        binding.bottomNavigationView.findViewById(R.id.power).setOnClickListener(view -> signOut());
+
     }
 
     private String encodedImage(Bitmap bitmap) {
@@ -164,4 +173,25 @@ public class Profile extends AppCompatActivity {
                     });
 
         }
+    public void showToast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void signOut() {
+        showToast("Signing Out...");
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        DocumentReference documentReference =
+                database.collection(Constants.KEY_COLLECTION_USERS).document(
+                        preferenceManager.getString(Constants.KEY_USER_ID)
+                );
+        HashMap<String, Object> updates = new HashMap<>();
+        updates.put(Constants.KEY_TOKEN, FieldValue.delete());
+        documentReference.update(updates)
+                .addOnSuccessListener(unused -> {
+                    preferenceManager.clear();
+                    startActivity(new Intent(getApplicationContext(), login.class));
+                    finish();
+                })
+                .addOnFailureListener(e -> showToast("Unable o LogIn"));
+    }
 }

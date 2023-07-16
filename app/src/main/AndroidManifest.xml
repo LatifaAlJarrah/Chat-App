@@ -4,6 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,6 +19,12 @@
         android:theme="@style/Theme.ChitChat"
         tools:targetApi="31">
         <activity
+            android:name=".activities.CallScreen"
+            android:exported="false" />
+        <activity
+            android:name=".activities.UserProfile"
+            android:exported="false" />
+        <activity
             android:name=".activities.Profile"
             android:exported="false" />
         <activity
@@ -25,7 +35,8 @@
             android:exported="false" />
         <activity
             android:name=".activities.ChatMessaging"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activities.Home"
             android:exported="false" />
