@@ -117,7 +117,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="@dimen/_12ssp"
-        android:visibility="gone"
+        android:visibility="invisible"
+
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

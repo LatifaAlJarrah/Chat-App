@@ -27,12 +27,19 @@ public class MainActivity extends AppCompatActivity implements AppCompatCallback
     private class LogoLauncher extends Thread {
         public void run() {
             try {
-                sleep(SPLASH_DELAY);
+                // this method will be executed in a separate thread
+                // show a logo splash screen for a few seconds
+                sleep(SPLASH_DELAY); // Pause the thread for 2000 milliseconds (2 seconds)
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+            // navigate to the OnBording1 activity after the logo is shown
             Intent intent = new Intent(MainActivity.this, OnBording1.class);
             startActivity(intent);
+
+            // Finish the current activity so that the user cannot go back to the splash screen
             MainActivity.this.finish();
         }
     }

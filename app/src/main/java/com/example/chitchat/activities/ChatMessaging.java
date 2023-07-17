@@ -264,6 +264,11 @@ public class ChatMessaging extends BaseActivity {
             intent.putExtra(Constants.KEY_RECEIVER_ID, receiverUser.id);
             startActivity(intent);
         });
+        binding.imageCall.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), CallScreen.class);
+            intent.putExtra(Constants.KEY_RECEIVER_ID, receiverUser.id);
+            startActivity(intent);
+        });
     }
 
     private String getReadableDate(Date date) {

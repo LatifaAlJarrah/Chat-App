@@ -137,9 +137,15 @@ public class Friends extends BaseActivity  implements UserListener {
     private void filterFriends(String searchText) {
         filteredUsers.clear();
 
-        for (User user : users) {
-            if (user.name.toLowerCase().contains(searchText.toLowerCase())) {
-                filteredUsers.add(user);
+        if (searchText.isEmpty()) {
+            // Show all users when search text is empty
+            filteredUsers.addAll(users);
+        } else {
+            // Filter users based on the search text
+            for (User user : users) {
+                if (user.name.toLowerCase().contains(searchText.toLowerCase())) {
+                    filteredUsers.add(user);
+                }
             }
         }
 
@@ -151,7 +157,7 @@ public class Friends extends BaseActivity  implements UserListener {
         } else {
             showErrorMessage();
         }
-}
+    }
 
 
     private void setListener() {
@@ -175,6 +181,7 @@ public class Friends extends BaseActivity  implements UserListener {
                 .addOnCompleteListener(task -> {
                     String currentUserId = preferenceManager.getString(Constants.KEY_USER_ID);
                     if (task.isSuccessful() && task.getResult() != null) {
+                        users.clear(); // Clear the previous list of users
                         List<User> users = new ArrayList<>();
                         for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
                             if(currentUserId.equals(queryDocumentSnapshot.getId())) {
@@ -188,12 +195,13 @@ public class Friends extends BaseActivity  implements UserListener {
                             user.id =queryDocumentSnapshot.getId();
                             users.add(user);
                         }
-                        friendesAdapter.notifyDataSetChanged();
+                        filterFriends(binding.editTextSearch.getText().toString()); // Update filtered list
 
                         if (users.size() > 0) {
                             FriendesAdapter friendesAdapter = new FriendesAdapter(users, this);
                             binding.recycler.setAdapter(friendesAdapter);
                             binding.recycler.setVisibility(View.VISIBLE);
+                            showFilteredUsers();
                         } else {
                             showErrorMessage();
                         }
@@ -202,9 +210,14 @@ public class Friends extends BaseActivity  implements UserListener {
                     }
                 });
     }
+    private void showFilteredUsers() {
+        filteredUsers.clear();
+        filteredUsers.addAll(users);
+        friendesAdapter.notifyDataSetChanged();
+    }
     private void showErrorMessage() {
         binding.recycler.setVisibility(View.GONE);
-        binding.textErrorMessage.setText("no user available");
+//        binding.textErrorMessage.setText("no user available");
         binding.textErrorMessage.setVisibility(View.VISIBLE);
     }
 

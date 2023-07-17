@@ -19,6 +19,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -26,13 +28,11 @@ public class login extends AppCompatActivity {
     private ActivityLoginBinding loginBinding;
     private PreferenceManager preferenceManager;
 
-    //[START declare_auth]
 //    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // [START initialize_auth]
         // Initialize Firebase Auth
 //        mAuth = FirebaseAuth.getInstance();
 
@@ -73,27 +73,40 @@ public class login extends AppCompatActivity {
         loading(true);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
 
+        String enteredUsername = loginBinding.editTextUserName.getText().toString();
+        String enteredPassword = loginBinding.editTextPersonPassword.getText().toString();
+
         database.collection(Constants.KEY_COLLECTION_USERS)
-                .whereEqualTo(Constants.KEY_NAME, loginBinding.editTextUserName.getText().toString())
-                .whereEqualTo(Constants.KEY_PASSWORD, loginBinding.editTextPersonPassword.getText().toString())
+                .whereEqualTo(Constants.KEY_NAME, enteredUsername)
                 .get()
                 .addOnCompleteListener(task -> {
-                    if(task.isSuccessful() && task.getResult() != null
-                    && task.getResult().getDocuments().size() > 0) {
+                    if (task.isSuccessful() && task.getResult() != null
+                            && task.getResult().getDocuments().size() > 0) {
                         DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
-                        preferenceManager.putBoolean(Constants.KEY_IS_LOG_IN, true);
-                        preferenceManager.putString(Constants.KEY_USER_ID, documentSnapshot.getId());
-                        preferenceManager.putString(Constants.KEY_NAME, documentSnapshot.getString(Constants.KEY_NAME));
-                        preferenceManager.putString(Constants.KEY_IMAGE, documentSnapshot.getString(Constants.KEY_IMAGE));
-                        Intent intent = new Intent(getApplicationContext(), Home.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
+                        String storedHashedPassword = documentSnapshot.getString(Constants.KEY_PASSWORD);
+
+                        if (BCrypt.checkpw(enteredPassword, storedHashedPassword)) {
+                            // Passwords match, proceed with authentication
+                            preferenceManager.putBoolean(Constants.KEY_IS_LOG_IN, true);
+                            preferenceManager.putString(Constants.KEY_USER_ID, documentSnapshot.getId());
+                            preferenceManager.putString(Constants.KEY_NAME, documentSnapshot.getString(Constants.KEY_NAME));
+                            preferenceManager.putString(Constants.KEY_IMAGE, documentSnapshot.getString(Constants.KEY_IMAGE));
+                            Intent intent = new Intent(getApplicationContext(), Home.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        } else {
+                            // Passwords don't match
+                            loading(false);
+                            showToast("Invalid username or password");
+                        }
                     } else {
+                        // Error in retrieving the user or user not found
                         loading(false);
                         showToast("Unable To Sign In");
                     }
                 });
     }
+
     private void loading(Boolean isLoading) {
         if (isLoading) {
             loginBinding.btnLogIn.setVisibility(View.INVISIBLE);

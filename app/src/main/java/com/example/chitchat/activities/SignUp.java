@@ -1,10 +1,10 @@
 package com.example.chitchat.activities;
 
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.mindrot.jbcrypt.BCrypt;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -64,12 +64,13 @@ public class SignUp extends AppCompatActivity {
 
     private void signUp(){
         loading(true);
+        String hashedPassword = BCrypt.hashpw(signUpBinding.editTextPassword.getText().toString(), BCrypt.gensalt());
         FirebaseFirestore database  = FirebaseFirestore.getInstance();
         HashMap<String, Object> user = new HashMap<>();
         user.put(Constants.KEY_NAME, signUpBinding.usernameEditText.getText().toString());
         user.put(Constants.KEY_EMAIL, signUpBinding.editTextEmail.getText().toString());
         user.put(Constants.KEY_PHONE, signUpBinding.editTextPhone.getText().toString());
-        user.put(Constants.KEY_PASSWORD, signUpBinding.editTextPassword.getText().toString());
+        user.put(Constants.KEY_PASSWORD, hashedPassword);
         user.put(Constants.KEY_IMAGE, encodedImage);
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .add(user)
